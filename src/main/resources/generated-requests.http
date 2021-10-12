@@ -1,0 +1,32 @@
+DELETE http://localhost:8080/person/4
+
+###
+PUT http://localhost:8080/person/
+Content-Type: application/json
+
+{
+  "id": 4,
+  "login": "new user (edit)",
+  "password": "123"
+}
+
+###
+POST http://localhost:8080/person/
+Content-Type: application/json
+
+{
+  "login": "new user",
+  "password": "123"
+}
+
+###
+GET http://localhost:8080/person/
+Accept: application/json
+
+###
+GET http://localhost:8080/person/1
+Accept: application/json
+
+
+
+
