@@ -35,7 +35,7 @@ class PersonControllerTest {
     private PersonRepository repo;
 
     @Test
-    void find_allPerson_OK() throws Exception {
+    void whenFindAll() throws Exception {
         when(repo.findAll()).thenReturn(
                 List.of(Person.of(1, "person1", "password1"),
                         Person.of(1, "person2", "password2"))
@@ -53,7 +53,7 @@ class PersonControllerTest {
     }
 
     @Test
-    void find_personId_OK() throws Exception {
+    void whenFindById() throws Exception {
         when(repo.findById(1)).thenReturn(Optional.of(Person.of(1, "person1", "password1")));
 
         mvc.perform(get("/person/1")
@@ -66,14 +66,14 @@ class PersonControllerTest {
     }
 
     @Test
-    public void find_personIdNotFound_404() throws Exception {
+    public void whenFindByIdAndNotFound() throws Exception {
         mvc.perform(get("/person/5"))
                 .andExpect(status().isNotFound());
     }
 
 
     @Test
-    void save_person_OK() throws Exception {
+    void whenSave() throws Exception {
         Person person = Person.of(1, "person1", "password1");
         when(repo.save(any(Person.class))).thenReturn(person);
 
@@ -86,7 +86,7 @@ class PersonControllerTest {
     }
 
     @Test
-    void update_person_OK() throws Exception {
+    void whenUpdate() throws Exception {
         Person person = Person.of(1, "person1 (edit)", "password1");
         when(repo.save(any(Person.class))).thenReturn(person);
 
@@ -97,7 +97,7 @@ class PersonControllerTest {
     }
 
     @Test
-    void delete_person_OK() throws Exception {
+    void whenDelete() throws Exception {
         doNothing().when(repo).deleteById(1);
 
         mvc.perform(delete("/person/1"))
